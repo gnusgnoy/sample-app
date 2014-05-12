@@ -7,7 +7,8 @@
     No data retrieved
   <% end %>
 </p>
-<!--<p>
+<%if false%>
+<p>
   <%= @resultHash.each do |key, value| %>
     <%= key %> is : <%= value %> <br>
   <% end %>
@@ -16,7 +17,8 @@
   <%= @resultHash.fetch("Items").each do |a| %>
     <%= a %> </br>
   <% end %>
-</p>-->
+</p>
+<% end %>
 <p>
   <%= @water.ems_result.class %>
 </p>
