@@ -1,0 +1,16 @@
+<p id="notice"></p>
+<p>
+  <%= @result %>
+</p>
+<p>
+  <%= @resultHash.each do |key, value| %>
+    <%= key %> is : <%= value %> <br>
+  <% end %>
+</p>
+<p>
+  <%= @resultHash.fetch("Items").each do |a| %>
+    <%= a %> </br>
+  <% end %>
+</p>
+<%= link_to 'Edit', edit_water_path(@water) %> |
+<%= link_to 'Back', waters_path %>

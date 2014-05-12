@@ -1,0 +1,11 @@
+class EmsShow
+  @queue = :ems_queue
+  def self.perform(water_id)
+    snippet = Water.find(water_id)
+    result = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => snippet.dgm, :id => '', :node => snippet.node}.to_json, :headers => {'Content-Type' => 'application/json' } )
+    #@result = RestClient.post 'http://131.181.156.32/Ion/default.aspx/GetRTxmlData', { 'dgm' => @water.dgm, 'id' => '', 'node' => @water.node}.to_json, :content_type => :json, :accept => :json
+  #  @resultHash = Hash.from_xml(@result)["DiagramInput"]
+    snippet.ems_result = result
+    snippet.write_attribute(:ems_result, result)
+  end
+end
