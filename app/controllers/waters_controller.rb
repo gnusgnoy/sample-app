@@ -11,7 +11,7 @@ class WatersController < ApplicationController
   # GET /waters/1.json
   def show
     @water = Water.find(params[:id])
-    Resque.enqueue(EmsShow, @water.id)
+    #Resque.enqueue(EmsShow, @water.id)
     #@result = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => @water.dgm, :id => '', :node => @water.node}.to_json, :headers => {'Content-Type' => 'application/json' } )["d"]
     render :xml => @water.ems_result
     #@result = RestClient.post 'http://131.181.156.32/Ion/default.aspx/GetRTxmlData', { 'dgm' => @water.dgm, 'id' => '', 'node' => @water.node}.to_json, :content_type => :json, :accept => :json
@@ -36,7 +36,8 @@ class WatersController < ApplicationController
       if @water.save
         format.html { redirect_to @water, notice: 'Water was successfully created.' }
         format.json { render :show, status: :created, location: @water }
-	#Resque.enqueue(EmsShow, @water.id)
+	      Resque.enqueue(EmsShow, @water.id)
+
       else
         format.html { render :new }
         format.json { render json: @water.errors, status: :unprocessable_entity }

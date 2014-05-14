@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :waters
-
+  root 'waters#index'
   mount Resque::Server, :at => "/resque"
 
   # The priority is based upon order of creation: first created -> highest priority.
