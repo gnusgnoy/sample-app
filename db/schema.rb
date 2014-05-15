@@ -11,13 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140512012807) do
+ActiveRecord::Schema.define(version: 20140514081743) do
 
-  create_table "secs", force: true do |t|
-    t.string   "dgm"
-    t.string   "node"
+  create_table "tenants", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "usage"
   end
 
   create_table "waters", force: true do |t|
@@ -25,7 +24,7 @@ ActiveRecord::Schema.define(version: 20140512012807) do
     t.text     "node"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "ems_result"
+    t.string   "usage"
   end
 
 end

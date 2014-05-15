@@ -1,8 +1,8 @@
 <p id="notice"></p>
 <p>
 <!--  <%= @result %>-->
-  <% if @water.ems_result %>
-    <%= @water.ems_result %> <br>
+  <% if @tenant.usage %>
+    <%= @tenant.usage %> <br>
   <% else %>
     No data retrieved
   <% end %>
@@ -19,8 +19,6 @@
   <% end %>
 </p>
 <% end %>
-<p>
-  <%= @water.ems_result.class %>
-</p>
+
 <%= link_to 'Edit', edit_water_path(@water) %> |
 <%= link_to 'Back', waters_path %>

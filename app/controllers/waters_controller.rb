@@ -11,9 +11,12 @@ class WatersController < ApplicationController
   # GET /waters/1.json
   def show
     @water = Water.find(params[:id])
-    #Resque.enqueue(EmsShow, @water.id)
+    Resque.enqueue(EmsShow, @water.id)
     #@result = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => @water.dgm, :id => '', :node => @water.node}.to_json, :headers => {'Content-Type' => 'application/json' } )["d"]
-    render :xml => @water.ems_result
+    render :xml => @water.usage
+    #@xively = HTTParty.get('https://api.xively.com/v2/feeds/350817357.json?datastreams=shake,x', :headers => {'X-ApiKEY' => 'H3zbRxjJkW85pcKoWzzFYP3jVy6FIfzZvr0liLD12FIaO81H'} )
+    #@xively = HTTParty.get('https://api.xively.com/v2/feeds/350817357', :headers => {'X-ApiKEY' => 'H3zbRxjJkW85pcKoWzzFYP3jVy6FIfzZvr0liLD12FIaO81H'} )
+    #render :xml => @xively
     #@result = RestClient.post 'http://131.181.156.32/Ion/default.aspx/GetRTxmlData', { 'dgm' => @water.dgm, 'id' => '', 'node' => @water.node}.to_json, :content_type => :json, :accept => :json
 #   @resultHash = Hash.from_xml(@result)["DiagramInput"]
   end
@@ -31,13 +34,12 @@ class WatersController < ApplicationController
   # POST /waters.json
   def create
     @water = Water.new(water_params)
-
+    
     respond_to do |format|
       if @water.save
+        Resque.enqueue(EmsShow, @water.id)
         format.html { redirect_to @water, notice: 'Water was successfully created.' }
         format.json { render :show, status: :created, location: @water }
-	      Resque.enqueue(EmsShow, @water.id)
-
       else
         format.html { render :new }
         format.json { render json: @water.errors, status: :unprocessable_entity }

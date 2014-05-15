@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :waters
+  resources :waters, :tenants
   root 'waters#index'
   mount Resque::Server, :at => "/resque"
 

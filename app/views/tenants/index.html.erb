@@ -1,0 +1,6 @@
+<h1> Tenants Usage List</h1>
+<% @tenants.each do |tenant| %>
+  <p>
+    <%= link_to tenant.id, tenant_path(tenant) %>
+  </p>
+<% end %>
