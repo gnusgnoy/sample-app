@@ -13,7 +13,12 @@ class WatersController < ApplicationController
     @water = Water.find(params[:id])
     Resque.enqueue(EmsShow, @water.id)
     #@result = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => @water.dgm, :id => '', :node => @water.node}.to_json, :headers => {'Content-Type' => 'application/json' } )["d"]
-    render :xml => @water.usage
+    unless @water.usage.nil?
+      render :xml => @water.usage
+    else
+      render :show
+    end
+    
     #@xively = HTTParty.get('https://api.xively.com/v2/feeds/350817357.json?datastreams=shake,x', :headers => {'X-ApiKEY' => 'H3zbRxjJkW85pcKoWzzFYP3jVy6FIfzZvr0liLD12FIaO81H'} )
     #@xively = HTTParty.get('https://api.xively.com/v2/feeds/350817357', :headers => {'X-ApiKEY' => 'H3zbRxjJkW85pcKoWzzFYP3jVy6FIfzZvr0liLD12FIaO81H'} )
     #render :xml => @xively
@@ -60,7 +65,6 @@ class WatersController < ApplicationController
       end
     end
   end
-
   # DELETE /waters/1
   # DELETE /waters/1.json
   def destroy

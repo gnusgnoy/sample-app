@@ -5,7 +5,12 @@ class TenantsController < ApplicationController
 
   def show
     @tenant = Tenant.find(params[:id])
-    render :xml => @tenant.usage
+    unless @tenant.usage.nil?
+      render :xml => @tenant.usage
+    else
+      render :show
+    end
+    #render nothing: true
   end
 
   def index

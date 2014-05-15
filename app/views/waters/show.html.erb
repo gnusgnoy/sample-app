@@ -1,12 +1,11 @@
-<p id="notice"></p>
+<h1>No data retrieved yet</h1>
 <p>
 <!--  <%= @result %>-->
-  <% if @tenant.usage %>
-    <%= @tenant.usage %> <br>
-  <% else %>
-    No data retrieved
-  <% end %>
+<%= @water.usage %> <br>
+<%= link_to 'Edit', edit_water_path(@water) %> |
+<%= link_to 'Back', waters_path %>
 </p>
+
 <%if false%>
 <p>
   <%= @resultHash.each do |key, value| %>
@@ -20,5 +19,3 @@
 </p>
 <% end %>
 
-<%= link_to 'Edit', edit_water_path(@water) %> |
-<%= link_to 'Back', waters_path %>
