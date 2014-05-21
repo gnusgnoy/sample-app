@@ -25,14 +25,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'rspec-rails'
 gem 'capybara'
-gem 'selenium-webdriver'
 gem 'rest_client'
 gem 'resque', :require => "resque/server"
+gem 'redis-rails'
 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 gem 'httparty'
-gem 'resque'
+gem 'xively-rb'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

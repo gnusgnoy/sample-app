@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <% if false %>
+  
   <p>
     <%= f.label :dgm %>
     <%= f.text_field :dgm %>
@@ -19,13 +19,14 @@
     <%= f.label :node %>
     <%= f.text_field :node %>
   </p>
-  <% end %>
+  <% if false %>
   <p>
     <%= f.select :dgm, [['Water', 'x-pml:/diagrams/ud/default/Water_Meter_Pulse_V1.0.0/Water_Meter_Pulse_V1.0.0.dgm'], ['Gas', 'x-pml:/diagrams/ud/default/Gas_Meter_Pulse_V1.0.0/Gas_Meter_Pulse_V1.0.0.dgm'], ['Thermal', 'x-pml:/diagrams/ud/default/ThermalMeter_LandG_V1.0.0/ThermalMeter_LandG_V1.0.0.dgm'], ['Tenant Enery Summary', 'x-pml:/diagrams/ud/S1028/001-101-205-03.dgm'], ['Tenant Power Summary', 'x-pml:/diagrams/ud/S1028/001-101-205-01.dgm'], ['Tenant Power Quality Summary', 'x-pml:/diagrams/ud/S1028/001-101-205-01.dgm'] ] %>
   </p>
   <p>
     <%= f.select :node, [['SushiQ Cold Water', 'GPxPxTEN.W813'], ['SushiQ Hot Water', 'GPxPxTEN.W814'], ['Mexican Cold Water', 'GPxPxTEN.W807'], ['Mexican Hot Water', 'GPxPxTEN.W808'], ['Kebab Cold Water', 'GPxPxTEN.W801'], ['Kebab Hot Water', 'GPxPxTEN.W802'], ['SushiQ Gas', 'GPxPxBASE.G407'], ['Mexican Gas', 'GPxPxBASE.G409'], ['Kebab Gas', 'GPxPxBASE.G40A'], ['SushiQ Thermal', 'GPxPxTEN.TC09'], ['Mexican Thermal', 'GPxPxTEN.TC0A'], ['Kebab Thermal', 'GPxPxTEN.TC0E'], ['Bar Energy', 'GPxPxTEN.E04E'], ['Bookshop Energy', 'GPxPxTEN.E06F'], ['Pool Energy', 'GPxPxTEN.E04D'], ['Gym Energy', 'GPxPxTEN.E04C']] %>
   </p>
+  <% end %>
   <div class="actions">
     <%= f.submit "Query EMS Data" %>
   </div>

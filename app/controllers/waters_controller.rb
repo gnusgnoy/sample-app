@@ -11,8 +11,8 @@ class WatersController < ApplicationController
   # GET /waters/1.json
   def show
     @water = Water.find(params[:id])
-    Resque.enqueue(EmsShow, @water.id)
-    #@result = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => @water.dgm, :id => '', :node => @water.node}.to_json, :headers => {'Content-Type' => 'application/json' } )["d"]
+    #Resque.enqueue(EmsShow, @water.id)
+    @water.usage = HTTParty.post('http://131.181.156.32/Ion/default.aspx/GetRTxmlData'.to_str, :body => { :dgm => @water.dgm, :id => 'f058f255-4c6e-4e3b-8112-4e4b801978bb', :node => @water.node}.to_json, :headers => {'Content-Type' => 'application/json' } )["d"]
     unless @water.usage.nil?
       render :xml => @water.usage
     else
@@ -42,7 +42,7 @@ class WatersController < ApplicationController
     
     respond_to do |format|
       if @water.save
-        Resque.enqueue(EmsShow, @water.id)
+        #Resque.enqueue(EmsShow, @water.id)
         format.html { redirect_to @water, notice: 'Water was successfully created.' }
         format.json { render :show, status: :created, location: @water }
       else
