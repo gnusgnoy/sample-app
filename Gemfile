@@ -26,9 +26,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'rspec-rails'
 gem 'capybara'
 gem 'rest_client'
+<<<<<<< HEAD
 gem 'resque', :require => "resque/server"
 gem 'redis-rails'
+=======
+#gem 'resque', :require => "resque/server"
+>>>>>>> 9f439629b1064581cd35578111a272a884110a20
 
+gem 'resque' 
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 gem 'httparty'
